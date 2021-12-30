@@ -53,8 +53,6 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
-
-  gem 'faker'
 end
 
 group :test do
@@ -82,3 +80,4 @@ gem 'sitemap_generator', '~> 6.1'
 gem 'whenever', require: false
 
 gem 'rack-cors'
+gem 'faker'
