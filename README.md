@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This repo uses the Rails template from [Jumpstart](https://github.com/excid3/jumpstart).
 
-Things you may want to cover:
+# Requirements
 
-* Ruby version
+You'll need the following installed to run the app successfully:
 
-* System dependencies
+    Ruby 2.5 or higher
+    bundler - gem install bundler
+    rails - gem install rails
+    Database - we recommend Postgres, but you can use MySQL, SQLite3, etc
+    Redis - For ActionCable support
+    ImageMagick or libvips for ActiveStorage variants
+    Yarn - brew install yarn or Install Yarn
+    Foreman (optional) - gem install foreman - helps run all your processes in development
 
-* Configuration
+# Running the app locally
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+``` bash
+  /bin/dev
+```
