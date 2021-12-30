@@ -1,0 +1,14 @@
+<div class="page-header">
+  <%= link_to centers_path, class: 'btn btn-default' do %>
+    All Centers
+  <% end %>
+  <%= link_to edit_center_path(@center), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show center</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @center.name %></dd>
+</dl>

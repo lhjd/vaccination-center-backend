@@ -1,0 +1,39 @@
+<%= form_with(model: day_off, local: true) do |form| %>
+  <% if day_off.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(day_off.errors.count, "error") %> prohibited this day_off from being saved:</h2>
+
+      <ul>
+      <% day_off.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :date, class: 'form-label' %>
+      <%= form.date_field :date, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :nurse_id, class: 'form-label' %>
+      <%= form.text_field :nurse_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if day_off.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', day_off, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if day_off.persisted? %>
+      <%= link_to "Cancel", day_off, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", day_offs_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to bookings_path, class: 'btn btn-default' do %>
+    All Bookings
+  <% end %>
+  <%= link_to edit_booking_path(@booking), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show booking</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Resident:</dt>
+  <dd><%= @booking.resident %></dd>
+  <dt>Slot:</dt>
+  <dd><%= @booking.slot %></dd>
+</dl>

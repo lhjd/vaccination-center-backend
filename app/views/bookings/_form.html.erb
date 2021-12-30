@@ -1,0 +1,39 @@
+<%= form_with(model: booking, local: true) do |form| %>
+  <% if booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :resident_id, class: 'form-label' %>
+      <%= form.text_field :resident_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :slot_id, class: 'form-label' %>
+      <%= form.text_field :slot_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if booking.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', booking, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if booking.persisted? %>
+      <%= link_to "Cancel", booking, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", bookings_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

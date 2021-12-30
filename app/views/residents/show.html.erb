@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to residents_path, class: 'btn btn-default' do %>
+    All Residents
+  <% end %>
+  <%= link_to edit_resident_path(@resident), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show resident</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Name:</dt>
+  <dd><%= @resident.name %></dd>
+  <dt>Nric:</dt>
+  <dd><%= @resident.nric %></dd>
+</dl>

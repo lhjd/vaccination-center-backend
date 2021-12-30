@@ -1,0 +1,34 @@
+<%= form_with(model: center, local: true) do |form| %>
+  <% if center.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(center.errors.count, "error") %> prohibited this center from being saved:</h2>
+
+      <ul>
+      <% center.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if center.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', center, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if center.persisted? %>
+      <%= link_to "Cancel", center, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", centers_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

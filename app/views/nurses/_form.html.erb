@@ -1,0 +1,39 @@
+<%= form_with(model: nurse, local: true) do |form| %>
+  <% if nurse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nurse.errors.count, "error") %> prohibited this nurse from being saved:</h2>
+
+      <ul>
+      <% nurse.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :center_id, class: 'form-label' %>
+      <%= form.text_field :center_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if nurse.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', nurse, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if nurse.persisted? %>
+      <%= link_to "Cancel", nurse, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", nurses_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

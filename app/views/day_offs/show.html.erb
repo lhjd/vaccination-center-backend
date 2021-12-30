@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to day_offs_path, class: 'btn btn-default' do %>
+    All Day_offs
+  <% end %>
+  <%= link_to edit_day_off_path(@day_off), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show day_off</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Date:</dt>
+  <dd><%= @day_off.date %></dd>
+  <dt>Nurse:</dt>
+  <dd><%= @day_off.nurse %></dd>
+</dl>
