@@ -1,2 +1,148 @@
-<h1>Welcome to Jumpstart!</h1>
-<p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+<h1>Dashboard</h1>
+<section>
+<h3>Residents</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">NRIC</th>
+      <th scope="col">Booking</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @residents.each do |r| %>
+      <tr>
+        <th scope="row"><%= r.id %></th>
+        <td><%= r.name %></td>
+        <td><%= r.nric %></td>
+        <td>
+          <% if r.booking.present? %>
+            <%= r.booking.slot.date %> - <%= local_time(r.booking.slot.start_time, '%l:%M%P') %>
+          <% else %>
+            -
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</section>
+<section>
+<h3>Vaccination Centers</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Nurses</th>
+      <th scope="col">Slots</th>
+      <th scope="col">Capacity</th>
+      <th scope="col"># Bookings</th>
+      <th scope="col">Status</th>
+      <th scope="col"># Off Duty Nurses</th>
+      <th scope="col">Total # Nurses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @centers.each do |c| %>
+      <tr>
+        <th scope="row"><%= c.id %></th>
+        <td><%= c.name %></td>
+        <td>
+          <ol>
+            <% c.nurses.each do |n| %>
+            <li>
+              <%= n.name %>
+            </li>
+            <% end %>
+          </ol>
+        </td>
+        <td>
+          <ul>
+            <% c.slots.each do |s| %>
+            <li>
+              <%= s.date.to_s %> - <%= local_time(s.start_time, '%l:%M%P') %>
+            </li>
+            <% end %>
+          </ul>
+        </td>
+        </td>
+        <td>
+          <ul>
+            <% c.slots.each do |s| %>
+            <li>
+              <%= s.capacity %>
+            </li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% c.slots.each do |s| %>
+            <li>
+              <%= s.bookings.reduce(0) {|sum, b| sum + (b.present? ? 1 : 0)} %>
+            </li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% c.slots.each do |s| %>
+            <li>
+              <% if s.bookings.reduce(0) {|sum, b| sum + (b.present? ? 1 : 0)} == s.capacity %>
+                <span style="color: red">FULL</span>
+              <% else %>
+                <span style="color: green">AVAILABLE</span>
+              <% end %>
+            </li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <% c.slots.each do |s| %>
+            <li>
+              <%= c.nurses.reduce(0) { |sum, n| sum + n.day_offs.reduce(0) { |sum, d| sum + (d.present? && d.date == s.date ? 1 : 0) }  }  %>
+            </li>
+            <% end %>
+          </ul>
+        </td>
+        <td>
+          <%= c.nurses.count %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</section>
+<h3>Nurses</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Center</th>
+      <th scope="col">Day Offs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @nurses.each do |n| %>
+      <tr>
+        <th scope="row"><%= n.id %></th>
+        <td><%= n.name %></td>
+        <td><%= n.center.name %></td>
+        <td>
+        <% if n.day_offs.present? %>
+          <% n.day_offs.each do |d| %>
+              <%= d.date %>
+          <% end %>
+        <% else %>
+          -
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</section>

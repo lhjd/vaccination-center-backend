@@ -79,5 +79,6 @@ gem 'sidekiq', '~> 6.2'
 gem 'sitemap_generator', '~> 6.1'
 gem 'whenever', require: false
 
-gem 'rack-cors'
 gem 'faker'
+gem 'local_time'
+gem 'rack-cors'
